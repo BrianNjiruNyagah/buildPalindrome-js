@@ -1,0 +1,36 @@
+function buildPalindrome(st) {
+    if(checkIfPalindrome(st)){
+        return st;
+    }else{
+        return pal(st);
+    }
+}
+function checkIfPalindrome(st){
+  let count = 0;
+    for(let x = 0;x != Math.trunc(st.length/2);x++){
+        if(st[x] == st[(st.length-1)-x]){
+            count++;
+        }
+    }
+    if(count == Math.trunc(st.length/2)){
+        return true;
+    }
+    return false;
+}
+
+function pal(st){
+    let stringLength = st.length;
+    //saves the possible palindromes untill the while loop ends
+    let possiblePalindrome = "";
+    let arr = st.split('').reverse();
+    //the reversed word array is decreased and concatenated to st untill a palindrome in obtained
+    while(arr.length!= 0){
+        st += arr.join('');
+        console.log(st)
+        if(checkIfPalindrome(st)) possiblePalindrome =st;
+        st = st.substring(0,stringLength);
+        arr.shift();
+    }
+    return possiblePalindrome;
+}
+
